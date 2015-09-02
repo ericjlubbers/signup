@@ -1,0 +1,812 @@
+<html class="js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths wf-merriweather-n4-active wf-merriweather-n3-active wf-merriweather-i9-active wf-merriweather-n9-active wf-merriweather-n7-active wf-merriweather-i7-active wf-merriweather-i4-active wf-merriweather-i3-active wf-montserrat-n4-active wf-montserrat-n7-active wf-active" lang="en"><head>
+
+    <title>Denver Post E-mail Alerts &amp; Newsletters</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+
+<link rel="stylesheet" href="./css/foundation.css">
+<link rel="stylesheet" href="./js/jquery-ui-1.11.0.custom/jquery-ui.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" type="text/javascript" async=""></script><script src="./js/vendor/jquery.js" type="text/javascript"></script>
+<script src="./js/foundation.min.js" type="text/javascript"></script><meta class="foundation-data-attribute-namespace"><meta class="foundation-mq-xxlarge"><meta class="foundation-mq-xlarge"><meta class="foundation-mq-large"><meta class="foundation-mq-medium"><meta class="foundation-mq-small"><style></style>
+<script src="./js/vendor/modernizr.js" type="text/javascript"></script>
+<script src="./js/jquery-ui-1.11.0.custom/jquery-ui.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    WebFontConfig = {
+        google: { families: ['Merriweather:400,300,900italic,900,700,700italic,400italic,300italic:latin', 'Montserrat:400,700:latin' ] }
+    };
+    (function () {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+
+    function validateEmail(form) {
+        form.preventDefault();
+
+    }
+</script>
+
+    <script type="text/javascript">
+        function checkAll(className, checked) {
+            $("." + className).each(function () {
+                $(this).prop('checked', checked);
+            });
+        }
+    </script>
+
+
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Merriweather:400,300,900italic,900,700,700italic,400italic,300italic%7CMontserrat:400,700&amp;subset=latin,latin" media="all"><meta class="foundation-mq-topbar"></head>
+<body data-feedly-mini="yes" style="">
+
+
+
+<div id="login" class="reveal-modal medium" data-reveal="">
+
+    <form id="headerForm" name="headerForm" action="/dpopreference/preference;jsessionid=BC62F85729EE75A5E12B03EE4E508105" method="post">
+
+
+
+        <h1 class="bighed" style="padding-left:12px">Login</h1>
+
+        <p class="description" style="padding-left:12px">
+            Enter your e-mail below to manage your subscriptions.
+        </p>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="row collapse">
+                    <div class="small-10 columns">
+                        <input type="email" name="email" value="" id="email" placeholder="Enter your e-mail address ..." required="true">
+                        <em id="error" class="error"></em>
+                    </div>
+                    <div class="small-2 columns">
+                        <input type="submit" id="go" value="Go" class="button postfix">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="close-reveal-modal">×</a>
+    </form>
+
+
+
+
+</div>
+<div class="row">
+    <nav class="top-bar" data-topbar="">
+        <ul class="title-area">
+            <li class="name">
+                <a href="http://denverpost.com">
+                    <img data-interchange="[./images/dpfull.png, (default)], [./images/dpfull-retina.png, (retina)], [./images/dpfull-large.png, (large)]" style="padding:8px" class="display" data-uuid="SpBTWZozvU5T-6xarFd-T6ONM1-VsYMcC-B7fC8A0EMm7thcgHVd" src="./images/dpfull.png">
+                    <noscript>
+                        &lt;img src="./images/dpsmall.png"&gt;
+                    </noscript>
+                </a>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+        </ul>
+
+        
+    <section class="top-bar-section">
+            <!-- Right Nav Section -->
+            <ul class="right">
+                <li>
+                    <a href="http://denverpostcustomercare.com/">Print Subscription</a>
+                </li>
+                <li>
+                    <a href="http://www.denverpost.com/jolpopup">All Access</a>
+                </li>
+                <li class="active">
+                    <a href="#" data-reveal-id="login">Login</a>
+                </li>
+            </ul>
+
+        </section></nav>
+</div>
+
+<script>
+
+
+    $("#headerForm").submit(function (event) {
+        event.preventDefault();
+
+        var body = $("body");
+        body.addClass('busy');
+
+        var email = $("#email");
+
+        $.ajax({
+            url: 'validateEmail',
+            dataType: 'json',
+            async: true,
+            data: email,
+            success: function (data) {
+                body.removeClass('busy');
+
+                if (data.validEmail == false) {
+                    $("#error").text("please enter valid email address");
+                } else {
+                    $("#headerForm").unbind().submit();
+                }
+
+            }
+        });
+    });
+
+
+</script>
+<!-- Header -->
+<div class="row">
+    <div class="large-8 large-centered medium-10 medium-centered columns">
+        <h1 class="bighed">E-Mail Alerts &amp; Newsletters</h1>
+
+        <p class="description">
+            Daily news summaries, weekly updates and breaking news alerts delivered right to your inbox.
+        </p>
+    </div>
+</div>
+
+<form id="registrationForm" name="registrationForm" action="/dpopreference/register;jsessionid=BC62F85729EE75A5E12B03EE4E508105" method="post">
+
+
+<!-- Description -->
+<div class="row">
+    <div class="large-8 large-centered medium-10 medium-centered columns">
+        <div id="selectForm">
+            <!-- <fieldset>
+              <legend>Sign Up</legend> -->
+            <hr style="margin-top:12px;margin-bottom:12px;">
+            <h3 class="smallhed">Sign Up</h3>
+
+            <p class="description">Enter your email and ZIP, choose your alerts and click "Subscribe"</p>
+
+            <div class="row">
+                <div class="medium-8 columns">
+                    <input type="email" name="email" value="" id="registrationForm_email" class="bottom-margin-imp" placeholder="Email address*" required="true">
+                </div>
+                <div class="medium-4 columns end">
+                    <input type="text" name="form.zipCode" value="" id="registrationForm_form_zipCode" class="bottom-margin-imp" title="Integer Only" pattern="\d*" placeholder="ZIP Code*" required="true">
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="required-div">
+    <div class="large-5 large-centered medium-6 medium-centered columns end">
+        <p class="footnote" style="margin-top:8px;margin-bottom:2px;">
+            <strong>*Required</strong> (we just want to know if you're from Colorado)
+        </p>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px">
+<div class="large-8 large-centered medium-10 medium-centered columns">
+
+<table>
+<thead>
+<tr>
+    <th width="80">Sign Up</th>
+    <th width="500">Newsletter / Alert</th>
+    <th width="100">Frequency</th>
+</tr>
+</thead>
+<tbody>
+<!-- NEWS BLOCK -->
+<tr>
+    <td style="vertical-align:text-top;">
+        <p class="description">
+            <strong>All:</strong>
+        </p>
+        <input type="checkbox" onclick="checkAll('results1',this.checked);">
+        <br>
+    </td>
+
+    <td>
+        <h2 class="medhed">Breaking News Alerts</h2>
+
+        <p class="blurb">
+            Be the first to know major news as soon as it breaks.
+        </p>
+        <input type="checkbox" name="form.local" value="true" id="local" class="results1"><input type="hidden" id="__checkbox_local" name="__checkbox_form.local" value="true">
+
+        <label class="sub" for="local">Local</label>
+        <br>
+
+        <input type="checkbox" name="form.national" value="true" id="national" class="results1"><input type="hidden" id="__checkbox_national" name="__checkbox_form.national" value="true">
+
+        <label class="sub" for="national">National</label>
+        <br>
+
+        <input type="checkbox" name="form.business" value="true" id="business" class="results1"><input type="hidden" id="__checkbox_business" name="__checkbox_form.business" value="true">
+
+        <label class="sub" for="business">Business</label>
+        <br>
+
+        <input type="checkbox" name="form.politics" value="true" id="politics" class="results1"><input type="hidden" id="__checkbox_politics" name="__checkbox_form.politics" value="true">
+
+        <label class="sub" for="politics">Politics</label>
+        <br>
+
+        <input type="checkbox" name="form.culture" value="true" id="culture" class="results1"><input type="hidden" id="__checkbox_culture" name="__checkbox_form.culture" value="true">
+
+        <label class="sub" for="culture">Culture</label>
+
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>As it happens</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.dptv" value="true" id="dptv"><input type="hidden" id="__checkbox_dptv" name="__checkbox_form.dptv" value="true">
+
+        <label for="dptv"></label>
+    </td>
+
+    <td>
+        <h2 class="medhed">DPTV updates</h2>
+
+        <p class="blurb">
+            A daily video roundup of top headlines and special reports from <a href="
+http://dptv.denverpost.com">DPTV with Molly Hughes</a>.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Daily</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.sportsshow" value="true" id="sportsshow"><input type="hidden" id="__checkbox_sportsshow" name="__checkbox_form.sportsshow" value="true">
+
+        <label for="sportsshow"></label>
+    </td>
+
+    <td>
+        <h2 class="medhed">The Sports Show Highlights</h2>
+
+        <p class="blurb">
+            Daily highlights from <a href="http://denverpost.com/sportsshow">The Sports
+            Show with Woody Paige and Les Shapiro</a>, featuring local athletes,
+            coaches, writers, comedians and more.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Daily</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.dailyDigest" value="true" id="dailyDigest"><input type="hidden" id="__checkbox_dailyDigest" name="__checkbox_form.dailyDigest" value="true">
+
+        <label for="dailyDigest"></label>
+    </td>
+
+    <td>
+        <h2 class="medhed">Daily Digest</h2>
+
+        <p class="blurb">
+            Ten articles you need to read, right at the beginning of your day.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Mornings, M-F</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.afternoonHeadlines" value="true" id="afternoonHeadlines"><input type="hidden" id="__checkbox_afternoonHeadlines" name="__checkbox_form.afternoonHeadlines" value="true">
+
+        <label for="afternoonHeadlines"></label>
+    </td>
+
+    <td>
+        <h2 class="medhed">Afternoon Headlines</h2>
+
+        <p class="blurb">
+            Catch up with the day's news during your commute or as soon as you get home.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Afternoons, M-F</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.entertainMe" value="true" id="entertainMe"><input type="hidden" id="__checkbox_entertainMe" name="__checkbox_form.entertainMe" value="true">
+
+        <label for="entertainMe"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">Entertain Me!</h2>
+
+        <p class="blurb">
+            Stuff to do this weekend along with colorful entertainment highlights from the entertainment department.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Thursdays</strong>
+        </p>
+    </td>
+</tr>
+<!-- SPORTS BLOCK -->
+<tr>
+    <td style="vertical-align:text-top;">
+        <p class="description">
+            <strong>All:</strong>
+        </p>
+        <input type="checkbox" onclick="checkAll('result2',this.checked);">
+        <br>
+    </td>
+
+    <td>
+        <h2 class="medhed">Breaking Sports News</h2>
+
+        <p class="blurb">
+            Scores, trades, injuries and other sports news as it breaks.
+        </p>
+
+        <input type="checkbox" name="form.sportsNews" value="true" id="news" class="result2"><input type="hidden" id="__checkbox_news" name="__checkbox_form.sportsNews" value="true">
+
+        <label class="sub" for="News">News</label>
+        <br>
+
+        <input type="checkbox" name="form.broncos" value="true" id="broncos" class="result2"><input type="hidden" id="__checkbox_broncos" name="__checkbox_form.broncos" value="true">
+
+        <label class="sub" for="broncos">Broncos</label>
+        <br>
+
+        <input type="checkbox" name="form.rockies" value="true" id="rockies" class="result2"><input type="hidden" id="__checkbox_rockies" name="__checkbox_form.rockies" value="true">
+
+        <label class="sub" for="rockies">Rockies</label>
+        <br>
+
+        <input type="checkbox" name="form.avalanche" value="true" id="avalanche" class="result2"><input type="hidden" id="__checkbox_avalanche" name="__checkbox_form.avalanche" value="true">
+
+        <label class="sub" for="avalanche">Avalanche</label>
+        <br>
+
+        <input type="checkbox" name="form.nuggets" value="true" id="nuggets" class="result2"><input type="hidden" id="__checkbox_nuggets" name="__checkbox_form.nuggets" value="true">
+
+        <label class="sub" for="nuggets">Nuggets</label>
+        <br>
+
+        <input type="checkbox" name="form.rapids" value="true" id="rapids" class="result2"><input type="hidden" id="__checkbox_rapids" name="__checkbox_form.rapids" value="true">
+
+        <label class="sub" for="rapids">Rapids</label>
+        <br>
+
+        <input type="checkbox" name="form.college" value="true" id="colleges" class="result2"><input type="hidden" id="__checkbox_colleges" name="__checkbox_form.college" value="true">
+
+        <label class="sub" for="colleges">Colleges</label>
+        <br>
+
+        <input type="checkbox" name="form.preps" value="true" id="preps" class="result2"><input type="hidden" id="__checkbox_preps" name="__checkbox_form.preps" value="true">
+
+        <label class="sub" for="preps">Preps</label>
+
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>As it happens</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+
+        <input type="checkbox" name="form.sportsDaily" value="true" id="sportsDaily"><input type="hidden" id="__checkbox_sportsDaily" name="__checkbox_form.sportsDaily" value="true">
+
+        <label for="sportsDaily"></label>
+    </td>
+
+    <td>
+        <h2 class="medhed">Sports Daily</h2>
+
+        <p class="blurb">
+            The best of the day in sports right when you wake up.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Daily, M-F</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.broncosInsider" value="true" id="broncosInsider"><input type="hidden" id="__checkbox_broncosInsider" name="__checkbox_form.broncosInsider" value="true">
+
+        <label for="broncosInsider"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">Broncos Insider</h2>
+
+        <p class="blurb">
+            The definitive source for Broncos news from around the sports news world, compiled by our experts.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Daily (in season)</strong>
+    </p></td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.avalancheInsider" value="true" id="avalancheInsider"><input type="hidden" id="__checkbox_avalancheInsider" name="__checkbox_form.avalancheInsider" value="true">
+
+        <label for="avalancheInsider"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">Avalanche Insider</h2>
+
+        <p class="blurb">
+            The definitive source for Avalanche news from around the sports news world, compiled by our experts.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Daily (in season)</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.prepTally" value="true" id="prepSportsDigest"><input type="hidden" id="__checkbox_prepSportsDigest" name="__checkbox_form.prepTally" value="true">
+
+        <label for="prepSportsDigest"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">Prep Tally</h2>
+
+        <p class="blurb">
+            Scores, rankings and features delivered right to your inbox.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Daily (in season)</strong>
+        </p>
+    </td>
+</tr>
+<!-- SPECIALTY BLOCK -->
+<tr>
+    <td>
+        <input type="checkbox" name="form.yourHub" value="true" id="yourHubWeekly"><input type="hidden" id="__checkbox_yourHubWeekly" name="__checkbox_form.yourHub" value="true">
+
+        <label for="yourHubWeekly"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">YourHub Weekly</h2>
+        
+        <p class="blurb">
+            Hyperlocal news, crime blotter and business profiles from neighborhoods all over the Denver metro area.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Thursdays</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.cannabist" value="true" id="theCannabist"><input type="hidden" id="__checkbox_theCannabist" name="__checkbox_form.cannabist" value="true">
+
+        <label for="theCannabist"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">The Cannabist</h2>
+
+        <p class="blurb">
+            All things marijuana, from hard news to recipes, plus reviews of cannabis strains, equipment and shops.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Mondays &amp; Thursdays</strong>
+        </p>
+    </td>
+</tr>
+
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.reverbMixtape" value="true" id="reverbMixtape"><input type="hidden" id="__checkbox_reverbMixtape" name="__checkbox_form.reverbMixtape" value="true">
+
+        <label for="reverbMixtape"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">Reverb Mixtape</h2>
+
+        <p class="blurb">
+            A weekly dose of music reviews, news and what to put in your earphones next.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Thursdays</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.perspectiveWeekly" value="true" id="perspectiveWeekly"><input type="hidden" id="__checkbox_perspectiveWeekly" name="__checkbox_form.perspectiveWeekly" value="true">
+
+        <label for="perspectiveWeekly"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">Perspective Weekly</h2>
+
+        <p class="blurb">
+            Editorials, opinion columns and letters to the editor delivered every Sunday morning.</p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Sundays</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.denverPostPhotos" value="true" id="denverPostPhotos"><input type="hidden" id="__checkbox_denverPostPhotos" name="__checkbox_form.denverPostPhotos" value="true">
+
+        <label for="denverPostPhotos"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">Denver Post Photos</h2>
+
+        <p class="blurb">
+            Stunning images from Colorado and around the world, curated by The Denver Post photography staff.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Weekly</strong>
+        </p>
+    </td>
+</tr>
+<tr>
+    <td>
+        <input type="checkbox" name="form.vivaColorado" value="true" id="vivaColorado"><input type="hidden" id="__checkbox_vivaColorado" name="__checkbox_form.vivaColorado" value="true">
+
+        <label for="vivaColorado"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">Viva Colorado</h2>
+
+        <p class="blurb">
+            Spanish language Colorado and international headlines.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Weekly</strong>
+        </p>
+    </td>
+</tr>
+<!-- MARKETING BLOCK -->
+<tr>
+    <td>
+        <input type="checkbox" name="form.travelNewsletter" value="true" id="travelNewsletter"><input type="hidden" id="__checkbox_travelNewsletter" name="__checkbox_form.travelNewsletter" value="true">
+
+        <label for="travelNewsletter"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">Travel Newsletter</h2>
+
+        <p class="blurb">
+            Pick your next destination from your inbox every Wednesday.
+        </p>
+    </td>
+    <td>
+        <p class="description">
+            <strong>Wednesdays</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.firstTracks" value="true" id="firstTracks"><input type="hidden" id="__checkbox_firstTracks" name="__checkbox_form.firstTracks" value="true">
+
+        <label for="firstTracks"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">First Tracks - Ski &amp; Snow</h2>
+
+        <p class="blurb">
+            Find the best snow, activities, equipment and resort deals for your mountain adventures.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Weekly (in season)</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.petGazette" value="true" id="petGazette"><input type="hidden" id="__checkbox_petGazette" name="__checkbox_form.petGazette" value="true">
+
+        <label for="petGazette"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">Pet Gazette</h2>
+
+        <p class="blurb">
+            New products, pet-friendly events and fun places to take your four-legged friends.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Twice a month</strong>
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <input type="checkbox" name="form.theDeal" value="true" id="theDeal"><input type="hidden" id="__checkbox_theDeal" name="__checkbox_form.theDeal" value="true">
+
+        <label for="theDeal"></label>
+
+        <p></p>
+    </td>
+
+    <td>
+        <h2 class="medhed">The Deal - Gaming news</h2>
+
+        <p class="blurb">
+            Brought to you by <a href="http://coloradogamingnews.com">Colorado Gaming News</a> and The Deal gaming
+            magazine, this newsletter has casino promotions, entertainment, dining and special events from Black Hawk
+            and Central City.
+        </p>
+    </td>
+
+    <td>
+        <p class="description">
+            <strong>Every other Thursday</strong>
+        </p>
+    </td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+<div class="row">
+    <div class="large-3 large-offset-7 medium-3 medium-offset-8 columns end" style="text-align:right;">
+        <input type="submit" id="registrationForm_0" value="SUBSCRIBE" class="button alert radius center">
+
+    </div>
+</div>
+
+</form>
+
+
+
+
+
+<div id="dialog" title="Please select at least one newsletter/alert" style="display:none;">
+    <p>
+        To get E-Mail Alerts &amp; Newsletters from Denver Post, you must select at least one newsletter/alert from list
+    </p>
+</div>
+
+
+<script>
+    $(document).foundation();
+</script>
+
+<script>
+    $("#registrationForm").submit(function (event) {
+        var checkboxesChecked = $("#registrationForm input:checkbox:checked").length;
+
+        if (checkboxesChecked == 0) {
+            event.preventDefault();
+            $("#dialog").dialog({
+                width: 400,
+                modal: true // Freeze the background behind the overlay
+            });
+        }
+    });
+</script>
+
+
+
+<img id="floatBarImgId" src="chrome-extension://dbkmjjclgbiooljcegcddagnddjedmed/pics/save2-32.png" style="display: none; opacity: 0; position: absolute; z-index: 99999999999;"><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; if (typeof(lastpass_f.lpsubmitorig2)=='object'){ continue;}lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ if (typeof(d.innerText) != 'undefined') { d.innerText=i.toString(); } else { d.textContent=i.toString(); } } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script><div id="feedly-mini" title="feedly Mini tookit"></div></body></html>
